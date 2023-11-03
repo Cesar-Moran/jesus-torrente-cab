@@ -48,7 +48,7 @@ const Navbar = () => {
         </div>
         <div
           id="navbar-primary"
-          className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block"
+          className="hs-collapse block overflow-hidden transition-all duration-300 basis-full grow sm:block"
         >
           <Link className="font-medi" to="/" aria-current="page">
             Home
