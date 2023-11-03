@@ -4,7 +4,7 @@ import App from "./App.tsx";
 import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "./pages/About.tsx";
-import Navbar from "./components/Navbar.tsx";
+import DefaultNavbar from "./components/Navbar.tsx";
 import Designs from "./pages/Designs.tsx";
 import Contact from "./pages/Contact.tsx";
 import MyAccount from "./pages/MyAccount.tsx";
@@ -16,7 +16,7 @@ import PageNotFound from "./components/PageNotFound.tsx";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Navbar />
+      <DefaultNavbar />
       <Routes>
         <Route path="/" element={<App />}></Route>
         <Route path="/torrentekcb/designs" element={<Designs />}></Route>
