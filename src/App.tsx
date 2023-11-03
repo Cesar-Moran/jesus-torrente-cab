@@ -1,12 +1,10 @@
 import "./App.css";
 import AccordionTestimonials from "./components/Accordion";
 import LetsTalk from "./components/LetsTalk";
-import DefaultNavbar from "./components/Navbar";
 
 function App() {
   return (
     <div>
-      <DefaultNavbar />
       <section className="relative py-80  px-3 h-screen  flex justify-center items-center">
         <div className="absolute inset-0  bg-[url('https://images.unsplash.com/photo-1539922980492-38f6673af8dd?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]  bg-center bg-no-repeat"></div>
         <div className="absolute inset-0 bg-black opacity-50"></div>

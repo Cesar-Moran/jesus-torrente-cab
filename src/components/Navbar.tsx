@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function DefaultNavbar() {
+const Navbar = () => {
   return (
     <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full text-sm py-4">
       <nav
@@ -102,4 +102,6 @@ export default function DefaultNavbar() {
       </nav>
     </header>
   );
-}
+};
+
+export default Navbar;
