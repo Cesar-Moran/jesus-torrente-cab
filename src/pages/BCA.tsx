@@ -14,7 +14,6 @@ import { ToastAction } from "@/components/ui/toast";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Loader2Icon } from "lucide-react";
-import { BiErrorCircle } from "react-icons/bi";
 
 const BCA = () => {
   const {

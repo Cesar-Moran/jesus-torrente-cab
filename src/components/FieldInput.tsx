@@ -1,5 +1,3 @@
-import { BiErrorCircle } from "react-icons/bi";
-
 interface FieldProps {
   name: string;
   type: string | number;

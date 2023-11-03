@@ -6,7 +6,6 @@ import emailjs from "emailjs-com";
 import { useToast } from "@/components/ui/use-toast";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
-import { ErrorMessage } from "@hookform/error-message";
 import { ToastAction } from "@/components/ui/toast";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Separator } from "@/components/ui/separator";
