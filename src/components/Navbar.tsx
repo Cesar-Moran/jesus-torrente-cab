@@ -1,17 +1,14 @@
 import { Link } from "react-router-dom";
 
-function DefaultNavbar() {
+export default function DefaultNavbar() {
   return (
-    <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full text-sm py-4 bg-white">
+    <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full text-sm py-4">
       <nav
-        className="max-w-[85rem]   w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between"
+        className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between"
         aria-label="Global"
       >
-        <div className="flex items-center justify-between ">
-          <a
-            className="flex items-center text-lg font-semibold text-black "
-            href="#"
-          >
+        <div className="flex items-center justify-between">
+          <a className="flex-none text-xl font-semibold text-white" href="#">
             <img
               src="https://i0.wp.com/torrentekitchenandbath.com/wp-content/uploads/2023/07/download.png?resize=150%2C150&ssl=1"
               className="w-14 h-14"
@@ -20,7 +17,7 @@ function DefaultNavbar() {
           <div className="sm:hidden">
             <button
               type="button"
-              className="hs-collapse-toggle p-2 inline-flex justify-center items-center gap-2 rounded-md border border-white/[.25] font-medium bg-yellow-300 text-white shadow-sm align-middle hover:bg-white/[.15] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-600 focus:ring-white transition-all text-sm"
+              className="hs-collapse-toggle p-2 inline-flex justify-center items-center gap-2 rounded-md border border-white/[.25] font-medium bg-blue-600 text-white shadow-sm align-middle hover:bg-white/[.15] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-600 focus:ring-white transition-all text-sm"
               data-hs-collapse="#navbar-primary"
               aria-controls="navbar-primary"
               aria-label="Toggle navigation"
@@ -53,7 +50,7 @@ function DefaultNavbar() {
           id="navbar-primary"
           className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block"
         >
-          <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 uppercase ">
+          <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 uppercase">
             <Link className="font-medi" to="/" aria-current="page">
               Home
             </Link>
@@ -93,7 +90,7 @@ function DefaultNavbar() {
             >
               Shop
             </Link>
-            <button className="uppercase bg-red-500 p-3 rounded-lg text-white hover:bg-yellow-400 duration-200">
+            <button className="uppercase bg-red-500 p-3 rounded-lg text-white  duration-200">
               <Link
                 className="font-medium "
                 to="/torrentekcb/becomeadealer"
@@ -108,5 +105,3 @@ function DefaultNavbar() {
     </header>
   );
 }
-
-export default DefaultNavbar;
