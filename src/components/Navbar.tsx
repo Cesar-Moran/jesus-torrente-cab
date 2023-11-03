@@ -50,56 +50,54 @@ export default function DefaultNavbar() {
           id="navbar-primary"
           className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block"
         >
-          <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 uppercase">
-            <Link className="font-medi" to="/" aria-current="page">
-              Home
-            </Link>
-            <Link
-              className="font-medium "
-              to="/torrentekcb/designs"
-              ria-current="page"
-            >
-              Designs
-            </Link>
-            <Link
-              className="font-medium "
-              to="/torrentekcb/about"
-              ria-current="page"
-            >
-              About
-            </Link>
+          <Link className="font-medi" to="/" aria-current="page">
+            Home
+          </Link>
+          <Link
+            className="font-medium "
+            to="/torrentekcb/designs"
+            ria-current="page"
+          >
+            Designs
+          </Link>
+          <Link
+            className="font-medium "
+            to="/torrentekcb/about"
+            ria-current="page"
+          >
+            About
+          </Link>
 
+          <Link
+            className="font-medium "
+            to="/torrentekcb/contact"
+            ria-current="page"
+          >
+            Contact
+          </Link>
+          <Link
+            className="font-medium "
+            to="/torrentekcb/myaccount"
+            ria-current="page"
+          >
+            My Account
+          </Link>
+          <Link
+            className="font-medium "
+            to="/torrentekcb/shop"
+            ria-current="page"
+          >
+            Shop
+          </Link>
+          <button className="uppercase bg-red-500 p-3 rounded-lg text-white  duration-200">
             <Link
               className="font-medium "
-              to="/torrentekcb/contact"
+              to="/torrentekcb/becomeadealer"
               ria-current="page"
             >
-              Contact
+              Become a dealer
             </Link>
-            <Link
-              className="font-medium "
-              to="/torrentekcb/myaccount"
-              ria-current="page"
-            >
-              My Account
-            </Link>
-            <Link
-              className="font-medium "
-              to="/torrentekcb/shop"
-              ria-current="page"
-            >
-              Shop
-            </Link>
-            <button className="uppercase bg-red-500 p-3 rounded-lg text-white  duration-200">
-              <Link
-                className="font-medium "
-                to="/torrentekcb/becomeadealer"
-                ria-current="page"
-              >
-                Become a dealer
-              </Link>
-            </button>
-          </div>
+          </button>
         </div>
       </nav>
     </header>
