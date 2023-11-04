@@ -88,6 +88,21 @@
     @apply text-red-500  text-sm 
   }
 
+
+
+.h-2px {
+    height: 2px;
+}
+
+
+.group:hover {
+    .group-hover\: {
+        &translate-y-1 {
+            --tw-translate-y: 0.25rem;
+        }
+    }
+}
+
   input:focus, textarea:focus {
     outline: none
   }

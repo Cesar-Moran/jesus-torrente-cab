@@ -1,6 +1,6 @@
 const LetsTalk = () => {
   return (
-    <article className="p-5 md:mb-5 bg-red-600 text-white text-start flex flex-col gap-5  md:max-w-lg md:mx-auto md:rounded-lg ">
+    <article className="p-5 md:mb-5 bg-red-600 text-white text-start flex flex-col gap-5  md:max-w-lg md:mx-auto md:rounded-lg shadow-xl ">
       <div>
         <div className=" flex gap-5 items-center">
           <img

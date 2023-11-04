@@ -3,17 +3,19 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import emailjs from "emailjs-com";
-import { useToast } from "@/components/ui/use-toast";
-import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
-import { ToastAction } from "@/components/ui/toast";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Separator } from "@/components/ui/separator";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { ArrowRightSquare, Loader2 } from "lucide-react";
 
 const Contact = () => {
-  const { toast } = useToast();
   const [capVal, setCapVal] = useState(null);
+
   const form = useRef<HTMLFormElement | null>(null);
+  const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const phoneRegex =
     /^(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})/;
@@ -30,11 +32,13 @@ const Contact = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = () => {
+    setIsLoading(true);
     if (form.current) {
       emailjs
         .sendForm(
@@ -46,35 +50,22 @@ const Contact = () => {
         .then(
           (result) => {
             console.log(result.text);
+            reset();
+            setSubmitted(true);
+            setIsLoading(false);
           },
           (error) => {
             console.log(error.text);
+            setSubmitError(true);
           }
         );
-      if (Object.keys(errors).length === 0) {
-        toast({
-          variant: "default",
-          title:
-            "The email has been sent, we'll answer you as quick as we can! ",
-          description: format(new Date(), "'Submitted at:' MMMM, EEEE, yyyy"),
-          action: (
-            <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
-          ),
-        });
-      } else {
-        toast({
-          variant: "destructive",
-          title: "Fix the errors before submitting the form",
-          action: <ToastAction altText="Try again">Try again</ToastAction>,
-        });
-      }
     }
   };
 
   return (
     <article className="relative flex gap-8 flex-col lg:h-min justify-center mx-auto px-12 pt-14 ">
-      <div className="flex flex-col  gap-8 xl:flex-row lg:gap-5 ">
-        <div className="text-start max-w-4xl">
+      <div className="flex flex-col  gap-8 xl:flex-row lg:gap-5  my-20">
+        <div className="text-start max-w-4xl ">
           <div className="flex flex-col   gap-2 ">
             <h1 className="text-5xl text-start font-serif  ">Contact us</h1>
             <p className="">
@@ -150,6 +141,43 @@ const Contact = () => {
             ref={form}
             onSubmit={handleSubmit(onSubmit)}
           >
+            {submitted && (
+              <div>
+                <Alert className="bg-green-500 text-white flex flex-col items-center  w-full lg:block ">
+                  <AlertTitle className="flex items-center gap-2 justify-center">
+                    {" "}
+                    Your email has been sent!
+                    <ArrowRightSquare color="#ffffff" />
+                  </AlertTitle>
+
+                  <AlertDescription>
+                    We'll answer you
+                    <span className="relative rounded bg-muted px-[0.3rem] py-[0.1rem]  text-sm font-semibold text-black">
+                      as quick as we can
+                    </span>
+                    , don't forget to be patient and stay up to your email!
+                  </AlertDescription>
+                </Alert>
+                <Separator className="my-8" />
+              </div>
+            )}
+            {submitError && (
+              <Alert
+                className=" text-white flex flex-col items-center  w-full lg:block"
+                variant={"destructive"}
+              >
+                <AlertTitle className="flex items-center gap-2 justify-center">
+                  {" "}
+                  Uh oh! Something went wrong
+                  <ArrowRightSquare color="#ffffff" />
+                </AlertTitle>
+
+                <AlertDescription>
+                  There was something wrong when trying to submit the form, you
+                  should try again
+                </AlertDescription>
+              </Alert>
+            )}
             <div className="flex flex-col gap-5 w-full">
               {/* First name */}
               <input
@@ -244,7 +272,7 @@ const Contact = () => {
                   {errors.message.message}
                 </p>
               )}
-              <div className="captcha scale-[0.85] origin-[0_0]">
+              <div className="captcha scale-[0.85] origin-[0_0] hidden lg:block">
                 <ReCAPTCHA
                   sitekey="6LfvROooAAAAAPopBVNSFecOqIltMST6Z0Z8rVr5"
                   onChange={(val: any) => setCapVal(val)}
@@ -253,9 +281,15 @@ const Contact = () => {
               <Button
                 type="submit"
                 disabled={!capVal}
-                className="w-full   p-3 font-medium uppercase bg-red-500 text-white hover-bg-yellow-400 rounded-l"
+                className="w-full   p-3 font-medium uppercase bg-red-500 text-white hover-bg-yellow-400 rounded-l shadow-lg"
               >
-                Submit
+                {isLoading ? (
+                  <p className="flex items-center gap-3">
+                    Submitting <Loader2 className="animate-spin" />
+                  </p>
+                ) : (
+                  "Submit"
+                )}
               </Button>
             </div>
           </form>

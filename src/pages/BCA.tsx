@@ -50,7 +50,7 @@ const BCA = () => {
   };
 
   return (
-    <article>
+    <article className="py-20">
       <section className="relative pb-80 pt-40  px-3 h-screen flex flex-col text-center justify-center lg:flex-col lg:mx-auto">
         <div className="absolute inset-0  bg-[url('https://images.unsplash.com/photo-1631048500395-64cf901e9e10?auto=format&fit=crop&q=80&w=1740&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]  bg-cover bg-no-repeat"></div>
         <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -130,8 +130,8 @@ const BCA = () => {
                   : "border-b-2 p-2 w-full focus:border-yellow-500"
               }
             />
-            <ul className="mt-2 text-sm list-image-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Check_mark_23x20_04.svg/23px-Check_mark_23x20_04.svg.png)] list px-14">
-              <li className="text-yellow-500">Atleast 8 characters</li>
+            <ul className="mt-2 border-x-2 border-b-2 pb-2 text-sm list-image-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Check_mark_23x20_04.svg/23px-Check_mark_23x20_04.svg.png)] list px-14">
+              <li className="">Atleast 8 characters</li>
               <li>1 uppercase letter</li>
               <li>1 lowercase letter</li>
               <li>1 number</li>

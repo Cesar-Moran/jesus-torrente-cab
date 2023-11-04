@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const Designs = () => {
   return (
-    <article>
-      <section className="relative pb-80 pt-40  px-3 h-screen flex flex-col text-center justify-center lg:flex-col lg:mx-auto">
+    <article className="py-20">
+      <section className="relative pb-80 pt-40   px-3 h-screen flex flex-col text-center justify-center lg:flex-col lg:mx-auto">
         <div className="absolute inset-0  bg-[url('https://images.unsplash.com/photo-1612769732688-b7d111799dca?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]  bg-center bg-no-repeat"></div>
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative z-10 text-white max-w-2xl mx-auto flex flex-col gap-4">
@@ -25,7 +25,7 @@ const Designs = () => {
       <section className="px-2">
         <div className="max-w-7xl  py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
           <div className="grid sm:grid-cols-12 gap-6">
-            <div className="sm:self-end col-span-12 sm:col-span-7 md:col-span-8 lg:col-span-5 lg:col-start-3">
+            <div className="sm:self-end col-span-12 sm:col-span-7 md:col-span-8 lg:col-span-5 lg:col-start-5">
               <a
                 className="group relative block rounded-xl overflow-hidden"
                 href="#"
@@ -39,7 +39,6 @@ const Designs = () => {
                 </div>
               </a>
             </div>
-
             <div className="sm:self-end col-span-12 sm:col-span-5 md:col-span-4 lg:col-span-3">
               <a
                 className="group relative block rounded-xl overflow-hidden"
