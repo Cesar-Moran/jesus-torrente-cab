@@ -1,6 +1,6 @@
 const LetsTalk = () => {
   return (
-    <article className="p-5 md:mb-5 bg-black text-white text-start flex flex-col gap-5  md:max-w-lg md:mx-auto md:rounded-lg ">
+    <article className="p-5 md:mb-5 bg-red-600 text-white text-start flex flex-col gap-5  md:max-w-lg md:mx-auto md:rounded-lg ">
       <div>
         <div className=" flex gap-5 items-center">
           <img
@@ -17,7 +17,7 @@ const LetsTalk = () => {
         </div>
       </div>
       <div>
-        <button className="px-8 py-2 bg-yellow-500 text-white rounded-full active:scale-75 duration-300">
+        <button className="px-8 py-2 bg-yellow-400 text-white rounded-full active:scale-75 duration-300">
           Let's talk
         </button>
       </div>

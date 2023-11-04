@@ -72,7 +72,7 @@ const Contact = () => {
   };
 
   return (
-    <article className="relative flex gap-8 flex-col lg:h-screen    mx-auto px-12 lg:px-20 pt-14 ">
+    <article className="relative flex gap-8 flex-col lg:h-min justify-center mx-auto px-12 pt-14 ">
       <div className="flex flex-col  gap-8 xl:flex-row lg:gap-5 ">
         <div className="text-start max-w-4xl">
           <div className="flex flex-col   gap-2 ">
@@ -244,10 +244,12 @@ const Contact = () => {
                   {errors.message.message}
                 </p>
               )}
-              <ReCAPTCHA
-                sitekey="6LfvROooAAAAAPopBVNSFecOqIltMST6Z0Z8rVr5"
-                onChange={(val: any) => setCapVal(val)}
-              />
+              <div className="captcha scale-[0.85] origin-[0_0]">
+                <ReCAPTCHA
+                  sitekey="6LfvROooAAAAAPopBVNSFecOqIltMST6Z0Z8rVr5"
+                  onChange={(val: any) => setCapVal(val)}
+                />
+              </div>
               <Button
                 type="submit"
                 disabled={!capVal}

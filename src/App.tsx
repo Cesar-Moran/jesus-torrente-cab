@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./App.css";
 import AccordionTestimonials from "./components/Accordion";
 import LetsTalk from "./components/LetsTalk";
@@ -18,12 +19,16 @@ function App() {
             designed to meet your unique needs in Miami.
           </p>
           <div className="z-10 flex flex-col gap-5 justify-center items-center sm:flex-row">
-            <button className="bg-red-700 p-3 z-10 text-white rounded-2xl font-medium w-52  hover:scale-105 duration-200">
-              Request Consultation
-            </button>
-            <button className="bg-yellow-500 p-3 z-10 text-white hover:text-black rounded-2xl font-medium w-52 hover:scale-105 duration-200">
-              Designs
-            </button>
+            <Link to="/torrentekcb/contact">
+              <button className="bg-red-700 p-3 z-10 text-white rounded-2xl font-medium w-52  hover:scale-105 duration-200">
+                Request Consultation
+              </button>
+            </Link>
+            <Link to="/torrentekcb/designs">
+              <button className="bg-yellow-500 p-3 z-10 text-white hover:text-black rounded-2xl font-medium w-52 hover:scale-105 duration-200">
+                Designs
+              </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -42,16 +47,17 @@ function App() {
           </p>
           <p className=" text-sm md:text-lg text-white font-medium relative z-10 flex flex-col gap-5">
             <span>
-              With two convenient locations in Medley and Oakland Park, we pride
-              ourselves on offering customized solutions to meet all your
-              interior design needs.
+              With two well-placed branches in Medley and Oakland Park, we are
+              delighted to offer personalized answers to satisfy all your
+              interior design demands.
             </span>
             <span>
-              We serve both wholesale and retail customers, and our team of
-              highly trained experts is ready to advise you every step of the
-              way. Whether you’re looking to modernize a kitchen or renovate a
-              bathroom, we’ll be with you from material selection to timely and
-              reliable delivery.
+              Our services cater to both wholesale and retail customers, and our
+              team of exceptionally skilled professionals is prepared to assist
+              you at every phase of your project. Whether your objective is to
+              modernize a kitchen or undertake a bathroom renovation, we will
+              stand by your side from the selection of materials to ensure a
+              punctual and reliable delivery.
             </span>
           </p>
         </div>
