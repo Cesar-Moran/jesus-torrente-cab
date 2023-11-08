@@ -1,12 +1,11 @@
+import { ArrowRightToLine } from "lucide-react";
+import { Link } from "react-router-dom";
+
 const LetsTalk = () => {
   return (
-    <article className="p-5 md:mb-5 bg-red-600 text-white text-start flex flex-col gap-5  md:max-w-lg md:mx-auto md:rounded-lg shadow-xl ">
+    <article className="p-5 md:mb-5  text-black text-start flex flex-col gap-5  md:max-w-lg md:mx-auto md:rounded-lg shadow-md border border-slate-300  ">
       <div>
-        <div className=" flex gap-5 items-center">
-          <img
-            src="https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&q=80&w=1998&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            className="w-12 h-14 object-cover rounded-full border border-white "
-          ></img>
+        <div className=" flex gap-5 items-center justify-center">
           <p className="flex flex-col">
             <cite>Still have questions?</cite>
             <span>
@@ -16,10 +15,33 @@ const LetsTalk = () => {
           </p>
         </div>
       </div>
-      <div>
-        <button className="px-8 py-2 bg-yellow-400 text-white rounded-full active:scale-75 duration-300">
-          Let's talk
-        </button>
+      <div className="flex gap-4 justify-center ">
+        <Link to={"/torrentekcb/contact"}>
+          <button className="px-8 py-2 bg-red-500 text-white rounded-full duration-200 group flex items-center gap-2 hover:scale-105">
+            Send us a message!
+            <ArrowRightToLine
+              size={16}
+              color="#ffffff"
+              strokeWidth={3}
+              className=" group-hover:translate-x-3 duration-300"
+            />
+          </button>
+        </Link>
+        <a
+          aria-label="Chat on WhatsApp"
+          href="https://wa.me/13059546011"
+          target="_blank"
+        >
+          <button className="px-8 py-2 bg-green-500 text-white rounded-full active:scale-75 duration-200 group flex items-center gap-2 hover:scale-105">
+            Whatsapp
+            <ArrowRightToLine
+              size={16}
+              color="#ffffff"
+              strokeWidth={3}
+              className=" group-hover:translate-x-3 duration-300"
+            />
+          </button>
+        </a>
       </div>
     </article>
   );

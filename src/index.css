@@ -106,5 +106,44 @@
   input:focus, textarea:focus {
     outline: none
   }
+
+  .with-scroll-bars-hidden {
+   
+    padding-right: 0px !important;
+ }
+  
+      
+   body {
+   
+     overscroll-behavior: auto;
+     position: 0px !important;
+     padding-left: 0px;
+     padding-top: 0px;
+     padding-right: 0px;
+     margin-left:0px;
+     margin-top:0px;
+     margin-right: 0px !important;
+     
+   }
+   
+   .right-scroll-bar-position {
+     right: 0 !important;
+   }
+   
+   .width-before-scroll-bar {
+     margin-right: 0!important;
+   }
+   
+   .right-scroll-bar-position .right-scroll-bar-position {
+     right: 0!important;
+   }
+   
+   .width-before-scroll-bar .width-before-scroll-bar {
+     margin-right: 0 !important;
+   }
+
+  
 }
+
+
 

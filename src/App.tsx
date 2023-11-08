@@ -7,9 +7,9 @@ import { ArrowRightToLine } from "lucide-react";
 
 function App() {
   return (
-    <div className="py-14">
+    <div className="">
       <section className="relative py-80  px-3 h-screen  flex justify-center items-center">
-        <div className="absolute inset-0  bg-[url('https://images.unsplash.com/photo-1539922980492-38f6673af8dd?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]  bg-center bg-no-repeat"></div>
+        <div className="absolute inset-0  bg-[url('https://images.unsplash.com/photo-1560185010-2a290b0cd4cd?auto=format&fit=crop&q=80&w=2095&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]  bg-cover bg-no-repeat"></div>
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="flex flex-col gap-5 text-center ">
           <h1 className="text-5xl lg:text-6xl text-white font-serif  relative z-10">
@@ -28,18 +28,18 @@ function App() {
                   size={16}
                   color="#ffffff"
                   strokeWidth={3}
-                  className=" group-hover:translate-x-3 duration-300"
+                  className=" group-hover:translate-x-3 duration-200"
                 />
               </button>
             </Link>
             <Link to="/torrentekcb/designs">
-              <button className="bg-yellow-500 text-sm p-3 z-10 group rounded-2xl font-medium w-52 hover:scale-105 duration-200 flex items-center gap-2 text-white justify-center">
+              <button className="bg-yellow-400 text-sm p-3 z-10 group rounded-2xl font-medium w-52 hover:scale-105 duration-200 flex items-center gap-2 text-white  justify-center">
                 Designs
                 <ArrowRightToLine
                   size={16}
                   color="#ffffff"
                   strokeWidth={3}
-                  className=" group-hover:translate-x-3 duration-300"
+                  className=" group-hover:translate-x-3 duration-200"
                 />
               </button>
             </Link>
@@ -47,13 +47,13 @@ function App() {
         </div>
       </section>
       <section className="relative py-32 px-3 h-screen flex justify-center items-center">
-        <div className="absolute inset-0  bg-[url('https://images.unsplash.com/photo-1546551613-09c2f83e1ede?auto=format&fit=crop&q=80&w=2076&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-center bg-no-repeat"></div>
+        <div className="absolute inset-0  bg-[url('https://images.unsplash.com/photo-1560185127-1902ccdc5094?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-no-repeat"></div>
         <div className="absolute inset-0 bg-black opacity-70"></div>
         <div className="flex flex-col gap-5 text-start lg:text-center">
           <h2 className="text-5xl md:text-6xl text-center font-bold text-white font-serif  relative z-10">
             Call us today!
           </h2>
-          <p className="z-10 text-yellow-300 text-5xl font-serif font-bold">
+          <p className="z-10 text-yellow-400 text-5xl font-serif font-bold">
             (305) 885-2858
           </p>
           <p className="z-10 mb-5 text-gray-300 text-5xl font-serif font-bold">
@@ -127,7 +127,7 @@ function App() {
 
       <section className="relative  px-6 w-full h-screen flex justify-center items-center ">
         <div className="flex flex-col gap-5 lg:flex-row justify-center items-center lg:max-w-7xl mx-auto ">
-          <div className="absolute inset-0  bg-[url('https://plus.unsplash.com/premium_photo-1682377521566-f70ac8abe597?auto=format&fit=crop&q=80&w=1740&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-no-repeat"></div>
+          <div className="absolute inset-0  bg-[url('https://images.unsplash.com/photo-1560185008-37a6ea85a4d4?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-no-repeat"></div>
           <div className="absolute inset-0 bg-black opacity-70"></div>
           <div className="w-full">
             <img
@@ -187,7 +187,7 @@ function App() {
 
       <section className="relative  px-6 w-full py-32 flex justify-center items-center lg:flex-row ">
         <div className="flex flex-col gap-5 lg:flex-row justify-center items-center mx-auto ">
-          <div className="absolute inset-0  bg-[url('https://images.unsplash.com/photo-1610733374054-59454fe657cd?auto=format&fit=crop&q=80&w=1935&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-center bg-no-repeat "></div>
+          <div className="absolute inset-0  bg-[url('https://images.unsplash.com/photo-1610733374054-59454fe657cd?auto=format&fit=crop&q=80&w=1935&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]   bg-cover bg-no-repeat "></div>
           <div className="absolute inset-0 bg-black opacity-70"></div>
           <p className="z-10 text-white text-5xl font-serif">
             We are certified

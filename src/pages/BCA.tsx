@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Field from "../components/FieldInput";
 import ReCAPTCHA from "react-google-recaptcha";
-
 import { schemaYup } from "../components/Schema";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -11,9 +10,9 @@ import { useToast } from "@/components/ui/use-toast";
 import { format } from "date-fns";
 import { ErrorMessage } from "@hookform/error-message";
 import { ToastAction } from "@/components/ui/toast";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Loader2Icon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const BCA = () => {
   const {
@@ -26,31 +25,102 @@ const BCA = () => {
     criteriaMode: "all",
   });
 
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    role: "",
+    id: "",
+  });
+
+  const token = localStorage.getItem("token");
+
+  const parseJwt = (token: string) => {
+    try {
+      return JSON.parse(atob(token.split(".")[1]));
+    } catch (e) {
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      const user = parseJwt(token);
+      setUserInfo(user);
+    }
+  }, [token]);
+
   const [isLoading, setIsLoading] = useState(false);
 
-  const navigate = useNavigate();
   const [capVal, setCapVal] = useState(null);
   const { toast } = useToast();
+  const [dealer, setDealer] = useState({
+    name: "",
+    company_email: "",
+    companyvendor_name: "",
+    ein: "",
+    company_address: "",
+    phone_number: "",
+    personal_email: "",
+    company_description: "",
+  });
 
-  const onSubmit = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      toast({
-        variant: "default",
-        title:
-          "Your application has been sent, we'll review it and answer at your personal email address, redirecting... ",
-        description: format(new Date(), "'Submitted at:' MMMM, EEEE, yyyy"),
-        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+  const onSubmit = async () => {
+    // If token is true (user is logged in) let the user send a dealer request
+    if (token) {
+      setIsLoading(true);
+      await fetch("http://localhost:4000/dealerForm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...dealer,
+          userId: userInfo.id,
+        }),
+      }).then((response) => {
+        if (response.ok) {
+          setIsLoading(false);
+          toast({
+            variant: "default",
+            title:
+              "Your application has been sent, we'll review it and answer at your personal email address, redirecting... ",
+            description: format(new Date(), "'Submitted at:' MMMM, EEEE, yyyy"),
+            action: (
+              <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
+            ),
+          });
+        } else {
+          setIsLoading(false);
+          toast({
+            variant: "destructive",
+            title: "Company email already exists, try another one",
+          });
+        }
       });
-      setTimeout(() => {
-        navigate("/submitted-thanq");
-        setIsLoading(false);
-      }, 2000);
-    }, 2000);
+    } else {
+      // If the user is not logged in, remove the loading icon and display a error toast
+      setIsLoading(false);
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong",
+        description: "You need to log in before sending a dealer request!",
+        action: (
+          <ToastAction altText="Go to login">
+            <Link to={"/torrentekcb/login"}>Go to login</Link>
+          </ToastAction>
+        ),
+      });
+    }
+  };
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setDealer({
+      ...dealer,
+      [name]: value,
+    });
   };
 
   return (
-    <article className="py-20">
+    <article className="">
       <section className="relative pb-80 pt-40  px-3 h-screen flex flex-col text-center justify-center lg:flex-col lg:mx-auto">
         <div className="absolute inset-0  bg-[url('https://images.unsplash.com/photo-1631048500395-64cf901e9e10?auto=format&fit=crop&q=80&w=1740&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]  bg-cover bg-no-repeat"></div>
         <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -77,19 +147,21 @@ const BCA = () => {
           <div className="w-full">
             <Field
               type="text"
+              value={dealer.name}
               placeholder="Name"
-              name="first_name"
+              name="name"
               register={register}
               className={
-                errors.first_name
+                errors.name
                   ? "border-b-2 w-full p-2 border-red-500 focus:border-yellow-500 "
                   : "border-b-2 p-2 w-full focus:border-yellow-500 "
               }
+              onChange={handleChange}
             />
 
             <ErrorMessage
               errors={errors}
-              name="first_name"
+              name="name"
               render={({ message }) => (
                 <p className="errormessage ">{message}</p>
               )}
@@ -101,12 +173,14 @@ const BCA = () => {
               type="email"
               placeholder="Company Email"
               name="company_email"
+              value={dealer.company_email}
               register={register}
               className={
-                errors.first_name
+                errors.company_email
                   ? "border-b-2 w-full p-2 border-red-500 focus:border-yellow-500"
                   : "border-b-2 p-2 w-full focus:border-yellow-500"
               }
+              onChange={handleChange}
             />
             <ErrorMessage
               errors={errors}
@@ -117,61 +191,16 @@ const BCA = () => {
             />
           </div>
         </div>
-        <div className="flex flex-col lg:flex-row gap-4">
-          <div className="w-full">
-            <Field
-              type="password"
-              placeholder="Password"
-              name="password"
-              register={register}
-              className={
-                errors.first_name
-                  ? "border-b-2 w-full p-2 focus:border-yellow-500 border-red-500"
-                  : "border-b-2 p-2 w-full focus:border-yellow-500"
-              }
-            />
-            <ul className="mt-2 border-x-2 border-b-2 pb-2 text-sm list-image-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Check_mark_23x20_04.svg/23px-Check_mark_23x20_04.svg.png)] list px-14">
-              <li className="">Atleast 8 characters</li>
-              <li>1 uppercase letter</li>
-              <li>1 lowercase letter</li>
-              <li>1 number</li>
-            </ul>
-            <ErrorMessage
-              errors={errors}
-              name="password"
-              render={({ message }) => (
-                <p className="errormessage">{message}</p>
-              )}
-            />
-          </div>
-          <div className="w-full">
-            <Field
-              type="password"
-              name="confirm_password"
-              placeholder="Confirm Password"
-              register={register}
-              className={
-                errors.first_name
-                  ? "border-b-2 w-full p-2 focus:border-yellow-500 border-red-500"
-                  : "border-b-2 p-2 w-full focus:border-yellow-500"
-              }
-            />
-            <ErrorMessage
-              errors={errors}
-              name="confirm_password"
-              render={({ message }) => (
-                <p className="errormessage">{message}</p>
-              )}
-            />
-          </div>
-        </div>
+
         <Field
           type="text"
           placeholder="Company/Vendor Name"
           name="companyvendor_name"
           register={register}
+          onChange={handleChange}
+          value={dealer.companyvendor_name}
           className={
-            errors.first_name
+            errors.companyvendor_name
               ? "border-b-2 p-2 w-full focus:border-yellow-500 border-red-500"
               : "border-b-2 p-2 w-full focus:border-yellow-500"
           }
@@ -187,8 +216,10 @@ const BCA = () => {
           placeholder="EIN"
           name="ein"
           register={register}
+          onChange={handleChange}
+          value={dealer.ein}
           className={
-            errors.first_name
+            errors.ein
               ? "border-b-2 p-2 w-full focus:border-yellow-500 border-red-500"
               : "border-b-2 p-2 w-full focus:border-yellow-500"
           }
@@ -204,8 +235,10 @@ const BCA = () => {
           placeholder="Company Address"
           name="company_address"
           register={register}
+          onChange={handleChange}
+          value={dealer.company_address}
           className={
-            errors.first_name
+            errors.company_address
               ? "border-b-2 p-2 w-full focus:border-yellow-500 border-red-500"
               : "border-b-2 p-2 w-full focus:border-yellow-500"
           }
@@ -221,8 +254,10 @@ const BCA = () => {
           placeholder="Phone Number"
           name="phone_number"
           register={register}
+          onChange={handleChange}
+          value={dealer.phone_number}
           className={
-            errors.first_name
+            errors.phone_number
               ? "border-b-2 p-2 w-full focus:border-yellow-500 border-red-500"
               : "border-b-2 p-2 w-full focus:border-yellow-500"
           }
@@ -237,9 +272,11 @@ const BCA = () => {
           type="email"
           name="personal_email"
           placeholder="Personal Email"
+          onChange={handleChange}
+          value={dealer.personal_email}
           register={register}
           className={
-            errors.first_name
+            errors.personal_email
               ? "border-b-2 p-2 w-full focus:border-yellow-500 border-red-500"
               : "border-b-2 p-2 w-full focus:border-yellow-500"
           }
@@ -254,10 +291,12 @@ const BCA = () => {
           type="textarea"
           placeholder="Company Description"
           name="company_description"
+          onChange={handleChange}
+          value={dealer.company_description}
           register={register}
           rows={6}
           className={
-            errors.first_name
+            errors.company_description
               ? "border-b-2 p-2 border-r-2 focus:border-yellow-500  border-l-2 w-full  border-red-500"
               : "border-b-2 p-2 w-full focus:border-yellow-500 "
           }
@@ -298,7 +337,15 @@ const BCA = () => {
           disabled={!capVal}
           data-hs-overlay="#hs-toggle-between-modals-first-modal"
           onClick={
-            errors.first_name
+            errors.name ||
+            errors.company_address ||
+            errors.company_description ||
+            errors.company_email ||
+            errors.companyvendor_name ||
+            errors.ein ||
+            errors.personal_email ||
+            errors.phone_number ||
+            errors.trueInfo
               ? () => {
                   toast({
                     variant: "destructive",

@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 const Designs = () => {
   return (
-    <article className="py-20">
+    <article className="">
       <section className="relative pb-80 pt-40   px-3 h-screen flex flex-col text-center justify-center lg:flex-col lg:mx-auto">
-        <div className="absolute inset-0  bg-[url('https://images.unsplash.com/photo-1612769732688-b7d111799dca?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]  bg-center bg-no-repeat"></div>
+        <div className="absolute inset-0  bg-[url('https://images.unsplash.com/photo-1612769732688-b7d111799dca?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]  bg-cover bg-no-repeat"></div>
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative z-10 text-white max-w-2xl mx-auto flex flex-col gap-4">
           <h1 className="text-8xl font-serif">Designs</h1>

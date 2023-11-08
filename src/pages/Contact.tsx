@@ -7,10 +7,14 @@ import { Button } from "@/components/ui/button";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Separator } from "@/components/ui/separator";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { ArrowRightSquare, Loader2 } from "lucide-react";
+import { ArrowRightSquare, Loader2, MapPinned, Phone } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+import { Toaster } from "@/components/ui/toaster";
 
 const Contact = () => {
   const [capVal, setCapVal] = useState(null);
+  const { toast } = useToast();
 
   const form = useRef<HTMLFormElement | null>(null);
   const [submitted, setSubmitted] = useState(false);
@@ -112,19 +116,25 @@ const Contact = () => {
             <p className="mt-4">
               Whether it's technical assistance, product information, or simply
               a friendly chat, we're here to provide you with the best
-              experience possible. Don't hesitate to get in touch – we're just a
+              experience possible. Don't hesitate to get in touch - we're just a
               message away!
             </p>
             <div className="flex flex-col  mt-8 lg:flex-row gap-8">
               <div>
-                <big>Phone</big>
+                <big className="flex items-center gap-2">
+                  <Phone size={19} /> Phone
+                </big>
                 <p>305-885-2858</p>
               </div>
               <div>
                 <Separator orientation="vertical" />
               </div>
               <div>
-                <big>Addresses</big>
+                <big className="flex items-center gap-2">
+                  {" "}
+                  <MapPinned size={19} />
+                  Addresses
+                </big>
                 <p>12699 NW 107th Ave A and B suite, Medley, FL 33178 1097 E</p>
                 Oakland Park Blvd, Oakland Park, FL 33334
                 <p></p>
@@ -178,6 +188,7 @@ const Contact = () => {
                 </AlertDescription>
               </Alert>
             )}
+            <Toaster />
             <div className="flex flex-col gap-5 w-full">
               {/* First name */}
               <input
@@ -280,8 +291,32 @@ const Contact = () => {
               </div>
               <Button
                 type="submit"
+                className="w-full p-3 font-medium uppercase bg-red-500 text-white hover-bg-yellow-400 rounded-l shadow-lg"
                 disabled={!capVal}
-                className="w-full   p-3 font-medium uppercase bg-red-500 text-white hover-bg-yellow-400 rounded-l shadow-lg"
+                data-hs-overlay="#hs-toggle-between-modals-first-modal"
+                onClick={
+                  errors.first_name ||
+                  errors.last_name ||
+                  errors.email_address ||
+                  errors.message ||
+                  errors.phone_number
+                    ? () => {
+                        toast({
+                          variant: "destructive",
+                          title: "Uh oh! Something went wrong",
+                          description:
+                            "Fix the errors before submitting the form",
+                          action: (
+                            <ToastAction altText="Try again">
+                              Try again
+                            </ToastAction>
+                          ),
+                        });
+                      }
+                    : () => {
+                        ("");
+                      }
+                }
               >
                 {isLoading ? (
                   <p className="flex items-center gap-3">

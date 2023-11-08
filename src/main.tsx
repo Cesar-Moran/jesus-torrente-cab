@@ -12,6 +12,13 @@ import Shop from "./pages/Shop.tsx";
 import BCA from "./pages/BCA.tsx";
 import Footer from "./components/Footer.tsx";
 import PageNotFound from "./components/PageNotFound.tsx";
+import AdminPage from "./pages/AdminPage.tsx";
+import Register from "./pages/auth/Register.tsx";
+import Login from "./pages/auth/Login.tsx";
+import PrivateRoute from "./pages/private-routes/PrivateRoute.tsx";
+import PrivateAdminRoute from "./pages/private-routes/PrivateAdminRoute.tsx";
+import PrivateDealerRoute from "./pages/private-routes/PrivateDealerRoute.tsx";
+import RegisteredUsers from "./components/AdminPage/RegisteredUsers.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -23,8 +30,47 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/torrentekcb/about" element={<About />}></Route>
         <Route path="/torrentekcb/contact" element={<Contact />}></Route>
         <Route path="/torrentekcb/myaccount" element={<MyAccount />}></Route>
+        <Route
+          path="/torrentekcb/register"
+          element={
+            <PrivateRoute>
+              <Register />
+            </PrivateRoute>
+          }
+        ></Route>
+        <Route
+          path="/torrentekcb/login"
+          element={
+            <PrivateRoute>
+              <Login />
+            </PrivateRoute>
+          }
+        ></Route>
         <Route path="/torrentekcb/shop" element={<Shop />}></Route>
-        <Route path="/torrentekcb/becomeadealer" element={<BCA />}></Route>
+        <Route
+          path="/torrentekcb/becomeadealer"
+          element={
+            <PrivateDealerRoute>
+              <BCA />
+            </PrivateDealerRoute>
+          }
+        ></Route>
+        <Route
+          path="/torrentekcb/admin"
+          element={
+            <PrivateAdminRoute>
+              <AdminPage />
+            </PrivateAdminRoute>
+          }
+        ></Route>
+        <Route
+          path="/torrentekcb/admin/registeredUsers"
+          element={
+            <PrivateAdminRoute>
+              <RegisteredUsers />
+            </PrivateAdminRoute>
+          }
+        ></Route>
         <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
       <Footer />
