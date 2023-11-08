@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "../ui/button";
-import { RefreshCcw, Search } from "lucide-react";
+import { Search } from "lucide-react";
 
 const Pagination = ({ setRegisteredUsers }: any) => {
   const [currentPage, setCurrentPage] = useState(0);

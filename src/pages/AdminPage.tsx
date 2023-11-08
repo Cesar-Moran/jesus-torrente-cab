@@ -2,7 +2,6 @@ import { Separator } from "@/components/ui/separator";
 import { RefreshCcw } from "lucide-react";
 import { useEffect, useState } from "react";
 import cardStyles from "@/components/AdminPage/cardStyles";
-import RegisteredUsers from "@/components/AdminPage/RegisteredUsers";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const AdminPage = () => {
