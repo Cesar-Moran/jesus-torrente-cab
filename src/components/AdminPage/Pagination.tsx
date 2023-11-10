@@ -7,6 +7,7 @@ const Pagination = ({ setRegisteredUsers }: any) => {
   // Stores the look for an id input value
   const [inputValue, setInputValue] = useState("");
   const [maximumUsersFound, setMaximumUsersFound] = useState(false);
+  const [userNotFound, setUserNotFound] = useState(false);
 
   const handleNextPageChange = async () => {
     try {
@@ -71,25 +72,31 @@ const Pagination = ({ setRegisteredUsers }: any) => {
   };
 
   const handleInputChange = (ev: any) => {
+    // Handle Look for specific ID input value
     setInputValue(ev.target.value);
   };
 
   const handlePageSpecificId = async () => {
+    // Fetches the server and assigns the inputValue (the ID that the user types)
+    // into the URL params
     const response = await fetch(
       `http://localhost:4000/getSpecificId/${inputValue}`
     );
     if (response.ok) {
+      // If response ok, parse the response and save it into a variable called data
       const data = await response.json();
 
-      if (Array.isArray(data)) {
-        setRegisteredUsers(data);
-      } else if (data.id) {
-        // Si data no es un arreglo pero contiene un usuario, colócalo en un arreglo
-        setRegisteredUsers([data]);
+      if (data) {
+        if (Array.isArray(data)) {
+          // If data is an array (if is an array, it contains multiple users) set the registeredUsers with the data received
+          setRegisteredUsers(data);
+        } else if (data.id) {
+          // If data is not an array but it contains and ID (this means there's only 1 user), set the data into registeredUsers
+          // and save it as an array, this guarantees that registeredUsers always will be an array, even if it's only 1 user
+          setRegisteredUsers([data]);
+        }
       } else {
-        // Maneja cualquier otro caso de error
-        console.log("Usuario no encontrado");
-        setRegisteredUsers([]); // Puedes establecer un arreglo vacío o mostrar un mensaje de error
+        console.log("user not found");
       }
     }
   };
@@ -123,6 +130,7 @@ const Pagination = ({ setRegisteredUsers }: any) => {
         </Button>
       </div>
       <p>{maximumUsersFound ? "There are no users left to show!" : ""}</p>
+      <p>{userNotFound ? "Couldn't find a user with that ID" : ""}</p>
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import { Separator } from "@/components/ui/separator";
-import { RefreshCcw } from "lucide-react";
+import { Loader2Icon, RefreshCcw } from "lucide-react";
 import { useEffect, useState } from "react";
 import cardStyles from "@/components/AdminPage/cardStyles";
 import { Skeleton } from "@/components/ui/skeleton";
+import GotoHomeBtn from "./GotoHomeBtn";
 
-const AdminPage = () => {
+const DealerRequests = () => {
   const [requests, setRequests] = useState([
     {
       id: "",
@@ -20,8 +21,11 @@ const AdminPage = () => {
     },
   ]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const getDealerRequests = async () => {
     try {
+      setIsLoading(true);
       const response = await fetch("http://localhost:4000/getDealerRequests");
       if (response.ok) {
         const data = await response.json();
@@ -32,6 +36,7 @@ const AdminPage = () => {
     } catch (error) {
       console.error(error);
     }
+    setIsLoading(false);
   };
 
   const acceptRequest = async (userId: any, requestId: any) => {
@@ -60,21 +65,43 @@ const AdminPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col sm:flex-row justify-center p-8 ">
-      <div className="flex flex-col gap-8 w-full">
-        <div className="flex flex-col gap-8 items-center max-w-xl mx-auto ">
+    <div className="flex flex-col sm:flex-row  justify-center p-8 ">
+      <GotoHomeBtn />
+      <div className="flex flex-col gap-8 w-full items-center ">
+        <div className="flex flex-col gap-8 text-center  max-w-xl sm:mx-auto  ">
           <p className="text-3xl">Dealer requests</p>
           <button
-            className="flex gap-2 border p-2 rounded-lg group active:translate-x-3  duration-200"
+            className="flex gap-2 border p-2 rounded-lg group  active:translate-x-3  duration-200"
             onClick={getDealerRequests}
           >
             <RefreshCcw className="group-hover:rotate-180 duration-300" />{" "}
             Refresh
           </button>
         </div>
-        <div className="w-full">
-          {requests.length > 0
-            ? requests.map((request: any) => (
+        {isLoading ? (
+          <div className="w-full space-y-5">
+            <Loader2Icon className="animate-spin mx-auto" />
+            <div className="max-w-xl mx-auto space-y-6">
+              <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+              <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+              <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+              <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+              <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+              <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+              <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+              <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+              <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+              <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+              <div className="flex justify-between items-center gap-6 ">
+                <Skeleton className="w-full h-[50px] rounded-lg"></Skeleton>
+                <Skeleton className="w-full h-[50px] rounded-lg "></Skeleton>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="w-full space-y-8 ">
+            {requests.length > 0 ? (
+              requests.map((request: any) => (
                 <div key={request.id} className={cardStyles.container}>
                   <p>Submitted by USER ID: {request.userId}</p>
                   <Separator className={cardStyles.paragraph} />
@@ -113,29 +140,31 @@ const AdminPage = () => {
                   {/* Agregar más propiedades según sea necesario */}
                 </div>
               ))
-            : ""}
-        </div>
-        <div className="w-full">
-          <div className="max-w-xl mx-auto space-y-6">
-            <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
-            <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
-            <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
-            <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
-            <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
-            <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
-            <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
-            <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
-            <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
-            <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
-            <div className="flex justify-between items-center gap-6 ">
-              <Skeleton className="w-full h-[50px] rounded-lg"></Skeleton>
-              <Skeleton className="w-full h-[50px] rounded-lg "></Skeleton>
-            </div>
+            ) : (
+              <div className="w-full">
+                <div className="max-w-xl mx-auto space-y-6">
+                  <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+                  <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+                  <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+                  <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+                  <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+                  <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+                  <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+                  <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+                  <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+                  <Skeleton className=" h-[30px] rounded-full mx-auto"></Skeleton>
+                  <div className="flex justify-between items-center gap-6 ">
+                    <Skeleton className="w-full h-[50px] rounded-lg"></Skeleton>
+                    <Skeleton className="w-full h-[50px] rounded-lg "></Skeleton>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default AdminPage;
+export default DealerRequests;

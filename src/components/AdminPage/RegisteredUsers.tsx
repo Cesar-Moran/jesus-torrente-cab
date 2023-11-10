@@ -13,10 +13,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
 import { Separator } from "@radix-ui/react-dropdown-menu";
 import { useEffect, useState } from "react";
 import Pagination from "./Pagination";
 import { Button } from "../ui/button";
+import GotoHomeBtn from "./GotoHomeBtn";
 
 // TODO: COMMENT AND ORGANIZE EVERYTHING ON THIS FILE
 const RegisteredUsers = () => {
@@ -30,7 +32,9 @@ const RegisteredUsers = () => {
 
   const getRegisteredUsers = async () => {
     try {
-      const response = await fetch("http://localhost:4000/getRegisteredUsers");
+      const response = await fetch(
+        "http://localhost:4000/getRegisteredUsers?take=5"
+      );
       if (response.ok) {
         const data = await response.json();
         setRegisteredUsers(data);
@@ -66,7 +70,8 @@ const RegisteredUsers = () => {
   }, []);
 
   return (
-    <Table className="flex flex-col gap-8 max-w-7xl mx-auto py-20  ">
+    <Table className="flex flex-col gap-8 max-w-7xl mx-auto pt-8  ">
+      <GotoHomeBtn />
       <DropdownMenu>
         <DropdownMenuTrigger className="focus-visible:outline-none rounded-lg mx-3">
           <Button variant="outline" className="w-full ">

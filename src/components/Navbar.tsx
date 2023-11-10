@@ -28,12 +28,17 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
+import { DropdownMenuGroup } from "@radix-ui/react-dropdown-menu";
 
 export default function Navbar() {
   const menus = [
@@ -61,6 +66,10 @@ export default function Navbar() {
       title: "Shop",
       path: "/torrentekcb/shop",
       icon: <ShoppingCart size={15} />,
+    },
+    {
+      title: "Add Product",
+      path: "/torrentekcb/shop/addproduct",
     },
   ];
 
@@ -224,12 +233,34 @@ export default function Navbar() {
                       {userInfo?.role === "ADMIN" ? (
                         // If user role is admin, show the admin private button
                         <Link to={"/torrentekcb/admin"}>
-                          <DropdownMenuItem className="hover:cursor-pointer">
-                            <SheetHeader className="flex flex-row items-center gap-2">
-                              <LockKeyhole size={15} />
-                              Admin
-                            </SheetHeader>
-                          </DropdownMenuItem>
+                          <DropdownMenuGroup className="hover:cursor-pointer">
+                            <DropdownMenuSub>
+                              <DropdownMenuSubTrigger className="flex flex-row items-center gap-2">
+                                <LockKeyhole size={15} />
+                                Admin
+                              </DropdownMenuSubTrigger>
+                              <DropdownMenuPortal>
+                                <DropdownMenuSubContent>
+                                  <Link
+                                    to={"/torrentekcb/admin/dealerRequests"}
+                                  >
+                                    <DropdownMenuItem className="hover:cursor-pointer">
+                                      Dealer Requests
+                                    </DropdownMenuItem>
+                                  </Link>
+                                  <Link
+                                    to={"/torrentekcb/admin/registeredUsers"}
+                                    className="hover:cursor-pointer"
+                                  >
+                                    <DropdownMenuItem className="hover:cursor-pointer">
+                                      Registered Users
+                                    </DropdownMenuItem>
+                                  </Link>
+                                  <DropdownMenuSeparator />
+                                </DropdownMenuSubContent>
+                              </DropdownMenuPortal>
+                            </DropdownMenuSub>
+                          </DropdownMenuGroup>
                         </Link>
                       ) : (
                         // Else, show nothing.

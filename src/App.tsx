@@ -173,12 +173,12 @@ function App() {
                 src="https://torrentekitchenandbath.com/wp-content/uploads/2023/07/Screenshot-2023-07-31-105355-1.png"
                 className="w-12 h-12 relative -left-6 z-5 border-2 border-white "
               ></img>
-              <p>
+              <div>
                 <span className="text-yellow-400">★ ★ ★ ★ ★</span>
                 <p className="text-gray-600">
                   <strong>4.5</strong> from 100+ reviews
                 </p>
-              </p>
+              </div>
             </div>
           </div>
           <AccordionTestimonials />
