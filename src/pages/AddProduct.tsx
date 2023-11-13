@@ -1,6 +1,6 @@
 import GotoHomeBtn from "@/components/AdminPage/GotoHomeBtn";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const AddProduct = () => {
   const [product_name, setProduct_name] = useState("");

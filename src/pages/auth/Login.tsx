@@ -6,8 +6,8 @@ import { ErrorMessage } from "@hookform/error-message";
 import { yupResolver } from "@hookform/resolvers/yup";
 // @ts-ignore
 import { ToastAction } from "@radix-ui/react-toast";
-import { format } from "date-fns";
-import { Check, Loader, Loader2Icon } from "lucide-react";
+
+import { Loader2Icon } from "lucide-react";
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";

@@ -4,7 +4,6 @@ import {
   Instagram,
   MailCheck,
   MapPinned,
-  User2,
   Youtube,
 } from "lucide-react";
 import { Link } from "react-router-dom";

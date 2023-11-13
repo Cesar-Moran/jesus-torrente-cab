@@ -7,7 +7,6 @@ const Pagination = ({ setRegisteredUsers }: any) => {
   // Stores the look for an id input value
   const [inputValue, setInputValue] = useState("");
   const [maximumUsersFound, setMaximumUsersFound] = useState(false);
-  const [userNotFound, setUserNotFound] = useState(false);
 
   const handleNextPageChange = async () => {
     try {
@@ -130,7 +129,6 @@ const Pagination = ({ setRegisteredUsers }: any) => {
         </Button>
       </div>
       <p>{maximumUsersFound ? "There are no users left to show!" : ""}</p>
-      <p>{userNotFound ? "Couldn't find a user with that ID" : ""}</p>
     </div>
   );
 };
