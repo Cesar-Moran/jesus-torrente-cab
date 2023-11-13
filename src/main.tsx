@@ -12,7 +12,6 @@ import Shop from "./pages/Shop.tsx";
 import BCA from "./pages/BCA.tsx";
 import Footer from "./components/Footer.tsx";
 import PageNotFound from "./components/PageNotFound.tsx";
-import AdminPage from "./components/AdminPage/DealerRequests.tsx";
 import Register from "./pages/auth/Register.tsx";
 import Login from "./pages/auth/Login.tsx";
 import PrivateRoute from "./pages/private-routes/PrivateRoute.tsx";
@@ -82,7 +81,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         }
       ></Route>
       <Route
-        path="/torrentekcb/shop/addproduct"
+        path="/torrentekcb/admin/shop/addproduct"
         element={<AddProduct />}
       ></Route>
       <Route path="*" element={<PageNotFound />}></Route>

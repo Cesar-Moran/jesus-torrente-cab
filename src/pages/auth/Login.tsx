@@ -1,15 +1,18 @@
 import Field from "@/components/FieldInput";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/components/ui/use-toast";
+// @ts-ignore
 import { ErrorMessage } from "@hookform/error-message";
 import { yupResolver } from "@hookform/resolvers/yup";
+// @ts-ignore
 import { ToastAction } from "@radix-ui/react-toast";
 import { format } from "date-fns";
 import { Check, Loader, Loader2Icon } from "lucide-react";
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, redirect, useNavigate } from "react-router-dom";
+// @ts-ignore
+import { Link, Redirect, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
 const Login = () => {
@@ -95,7 +98,7 @@ const Login = () => {
           <ErrorMessage
             errors={errors}
             name="name"
-            render={({ message }) => (
+            render={({ message }: any) => (
               <p className="text-red-500 text-sm text-start">{message}</p>
             )}
           />
@@ -111,7 +114,7 @@ const Login = () => {
           <ErrorMessage
             errors={errors}
             name="password"
-            render={({ message }) => (
+            render={({ message }: any) => (
               <p className="text-red-500 text-sm text-start">{message}</p>
             )}
           />

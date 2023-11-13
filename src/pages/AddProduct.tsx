@@ -1,56 +1,58 @@
+import GotoHomeBtn from "@/components/AdminPage/GotoHomeBtn";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { storage } from "../firebase";
-import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
-import { v4 } from "uuid";
 
 const AddProduct = () => {
-  const [product, setProduct] = useState({
-    product_name: "",
-    product_description: "",
-    product_price: "",
-    product_image: "",
-    product_quantity: "",
-  });
+  const [product_name, setProduct_name] = useState("");
+  const [product_description, setProduct_description] = useState("");
+  const [product_price, setProduct_price] = useState("");
+  const [product_quantity, setProduct_quantity] = useState("");
 
-  const [imageUpload, setImageUpload] = useState<File | null>(null);
-  const [imageList, setImageList] = useState<string[]>([]);
+  const [product_image, setProduct_image] = useState<File | null>(null);
 
-  const imageListRef = ref(storage, "products-images/");
   const cardStyles = {
     formcontrol: "border p-3 rounded-lg ",
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
 
-    setProduct({
-      ...product,
-      [name]: value,
-    });
+    switch (name) {
+      case "product_name":
+        setProduct_name(value);
+        break;
+      case "product_price":
+        setProduct_price(value);
+        break;
+      case "product_description":
+        setProduct_description(value);
+        break;
+      case "product_quantity":
+        setProduct_quantity(value);
+        break;
+      // Add other cases if needed
+
+      default:
+        break;
+    }
   };
 
   const onSubmit = async (ev: any) => {
     ev.preventDefault();
-    if (imageUpload == null) return;
-    const imageRef = ref(storage, `products-images/${imageUpload.name + v4()}`);
-    uploadBytes(imageRef, imageUpload)
-      .then((snapshot) => {
-        getDownloadURL(snapshot.ref).then((url) => {
-          setProduct(() => ({
-            ...product,
-            product_image: url,
-          }));
-        });
-      })
-      .catch((error) => console.log(error.message));
+
+    const formData = new FormData();
+    formData.append("product_name", product_name);
+    formData.append("product_price", product_price);
+    formData.append("product_description", product_description);
+    formData.append("product_quantity", product_quantity);
+    product_image && formData.append("product_image", product_image);
 
     await fetch("http://localhost:4000/createProduct", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(product),
+
+      body: formData,
     });
   };
 
@@ -61,6 +63,7 @@ const AddProduct = () => {
           className="mt-5 mb-5 flex flex-col gap-9 items-start"
           onSubmit={onSubmit}
         >
+          <GotoHomeBtn />
           <div className="form-group">
             <input
               type="text"
@@ -89,9 +92,8 @@ const AddProduct = () => {
               id="image"
               name="product_image"
               onChange={(event) => {
-                handleChange(event);
                 if (event.target.files && event.target.files.length > 0) {
-                  setImageUpload(event.target.files[0]);
+                  setProduct_image(event.target.files[0]);
                 }
               }}
             />

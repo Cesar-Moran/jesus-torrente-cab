@@ -138,6 +138,17 @@ const AdminHome = () => {
         </section>
 
         <section>
+          <Link to={"/torrentekcb/admin/shop/addproduct"} className="">
+            <Card className="hover:shadow-lg duration-200  text-start px-5">
+              <CardTitle>Add products</CardTitle>
+              <CardDescription className="">
+                This page allows you to add new products to the shop
+              </CardDescription>
+            </Card>
+          </Link>
+        </section>
+
+        <section>
           <Card className=" hover:shadow-lg duration-200   text-start ">
             <CardHeader>
               <CardTitle>Admins</CardTitle>

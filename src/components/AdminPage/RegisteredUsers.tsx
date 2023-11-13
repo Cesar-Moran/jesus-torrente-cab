@@ -70,7 +70,7 @@ const RegisteredUsers = () => {
   }, []);
 
   return (
-    <Table className="flex flex-col gap-8 max-w-7xl mx-auto pt-8  ">
+    <Table className="flex flex-col gap-8 mx-auto pt-8  ">
       <GotoHomeBtn />
       <DropdownMenu>
         <DropdownMenuTrigger className="focus-visible:outline-none rounded-lg mx-3">

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import {
   KeyRound,
   LockKeyhole,
-  LogIn,
   LogOut,
   Menu,
   User2,
@@ -39,6 +38,7 @@ import {
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { DropdownMenuGroup } from "@radix-ui/react-dropdown-menu";
+import CartDropdown from "./Products/CartDropdown";
 
 export default function Navbar() {
   const menus = [
@@ -67,18 +67,12 @@ export default function Navbar() {
       path: "/torrentekcb/shop",
       icon: <ShoppingCart size={15} />,
     },
-    {
-      title: "Add Product",
-      path: "/torrentekcb/shop/addproduct",
-    },
   ];
 
   const [userInfo, setUserInfo] = useState({
     name: "",
     role: "",
   });
-
-  const [userScrolled, setUserScrolled] = useState(false);
 
   const logOut = () => {
     localStorage.clear();
@@ -142,7 +136,7 @@ export default function Navbar() {
 
                 {/* Register */}
 
-                <div className="flex flex-row-reverse gap-4">
+                <div className="flex flex-row-reverse items-center gap-4">
                   {/* Navbar BCA Button */}
                   {/* If user role is dealer, dont show the become a dealer button */}
                   {userInfo?.role === "DEALER" ? (
@@ -194,12 +188,17 @@ export default function Navbar() {
                     </li>
                   )}
 
+                  <CartDropdown />
+
                   <DropdownMenu>
                     {/* If user logged in (userInfo is true), show the Account dropdown menu */}
                     {userInfo ? (
-                      <DropdownMenuTrigger className=" flex justify-center group items-center font-medium gap-1">
-                        <User2 className="group-hover:-translate-y-1 duration-200" />
-                        Account
+                      <DropdownMenuTrigger className=" flex justify-center group items-center font-medium gap-2">
+                        <img
+                          src="https://torrente15.files.wordpress.com/2023/11/descarga-1.png"
+                          className="w-8 h-8 rounded-full p-0 m-0 !focusp:outline-none"
+                        ></img>
+                        {userInfo.name}
                       </DropdownMenuTrigger>
                     ) : (
                       // Else, show the auth dropdown menu
@@ -222,9 +221,7 @@ export default function Navbar() {
                         <DropdownMenuItem className="text-md gap-1">
                           {userInfo && (
                             <p className="">
-                              {" "}
-                              Hi, {userInfo.name}, right now you are a{" "}
-                              {userInfo.role}
+                              Hi, {userInfo.name}, you are an {userInfo.role}
                             </p>
                           )}
                         </DropdownMenuItem>
@@ -254,6 +251,14 @@ export default function Navbar() {
                                   >
                                     <DropdownMenuItem className="hover:cursor-pointer">
                                       Registered Users
+                                    </DropdownMenuItem>
+                                  </Link>
+                                  <Link
+                                    to={"/torrentekcb/admin/shop/addproduct"}
+                                    className="hover:cursor-pointer"
+                                  >
+                                    <DropdownMenuItem className="hover:cursor-pointer">
+                                      Add a product
                                     </DropdownMenuItem>
                                   </Link>
                                   <DropdownMenuSeparator />
@@ -303,6 +308,7 @@ export default function Navbar() {
             {/* Mobile part */}
             {/* Mobile part */}
             {/* Mobile part */}
+            {/* @ts-ignore */}
             <SheetContent className="flex flex-col items-start gap-5 font-medium">
               {menus.map((item, idx) => (
                 <SheetHeader

@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react";
-import { storage } from "../firebase";
-
-import { ref, listAll, getDownloadURL } from "firebase/storage";
 import { Loader2Icon } from "lucide-react";
 
 const Shop = () => {
   const [products, setProducts] = useState([
     {
-      product_id: "",
+      id: "",
       product_name: "",
       product_description: "",
-      product_price: "",
+      product_price: 0,
       product_image: "",
-      product_quantity: "",
+      product_quantity: 0,
     },
   ]);
 
@@ -21,34 +18,55 @@ const Shop = () => {
   const getProducts = async () => {
     try {
       setIsLoading(true);
-
       const response = await fetch("http://localhost:4000/getProducts");
       if (!response.ok) {
         console.error("Failed to fetch product data");
         return;
       }
-
       const data = await response.json();
       setProducts(data);
-
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
   };
 
+  const addToCart = (id: string) => {
+    // Obtener el contenido actual del localStorage
+    const storedItems = localStorage.getItem("products");
+    const existingItems = storedItems ? JSON.parse(storedItems) : [];
+
+    // Verificar si el producto ya está en el carrito
+    const existingProductIndex = existingItems.findIndex(
+      (item: any) => item.id === id
+    );
+
+    if (existingProductIndex !== -1) {
+      // Si el producto ya está en el carrito, incrementar la cantidad
+      existingItems[existingProductIndex].quantity += 1;
+    } else {
+      // Si el producto no está en el carrito, agregarlo con cantidad 1
+      existingItems.push({ id, quantity: 1 });
+    }
+
+    // Almacenar la lista actualizada en el localStorage
+    localStorage.setItem("products", JSON.stringify(existingItems));
+
+    console.log(`Producto ${id} agregado al carrito.`);
+  };
+
   useEffect(() => {
     getProducts();
   }, []);
   return (
-    <div className="flex items-center  gap-8 p-8">
+    <div className="flex flex-col md:flex-row items-center  gap-8 p-8">
       {isLoading ? (
-        <Loader2Icon className="animate-spin" />
+        <Loader2Icon className="animate-spin mx-auto" />
       ) : (
         products.map((product) => (
           <div
-            key={product.product_id}
-            className="p-8 container   bg-white border  border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+            key={product.id}
+            className="p-8 container max-w-lg bg-white border  border-gray-200 rounded-lg  dark:bg-gray-800 dark:border-gray-700"
           >
             {isLoading ? (
               <Loader2Icon />
@@ -67,14 +85,16 @@ const Shop = () => {
 
                 <div className="flex justify-between items-center text-start gap-3">
                   <span className="text-3xl font-bold text-gray-900 dark:text-white">
-                    ${product.product_price}
+                    {product.product_price}
                   </span>
-                  <a
-                    href="#"
-                    className="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 "
+                  <button
+                    className="text-white bg-red-500 hover:bg-red-800
+                      focus:ring-4 focus:outline-none focus:ring-blue-300
+                      font-medium rounded-lg text-sm px-5 py-2.5 "
+                    onClick={() => addToCart(product.id)}
                   >
                     Add to cart
-                  </a>
+                  </button>
                 </div>
               </div>
             )}

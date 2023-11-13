@@ -2,10 +2,10 @@ import Field from "@/components/FieldInput";
 import { ToastAction } from "@/components/ui/toast";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/components/ui/use-toast";
+// @ts-ignore
 import { ErrorMessage } from "@hookform/error-message";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Check } from "lucide-react";
-import { format } from "path";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -64,6 +64,11 @@ const Register = () => {
             </ToastAction>
           ),
         });
+        setUser({
+          name: "",
+          password: "",
+          confirm_password: "",
+        });
       } else {
         toast({
           variant: "destructive",
@@ -94,7 +99,7 @@ const Register = () => {
           <ErrorMessage
             errors={errors}
             name="name"
-            render={({ message }) => (
+            render={({ message }: any) => (
               <p className="text-red-500 text-start text-sm">{message}</p>
             )}
           />
@@ -110,7 +115,7 @@ const Register = () => {
           <ErrorMessage
             errors={errors}
             name="password"
-            render={({ message }) => (
+            render={({ message }: any) => (
               <p className="text-red-500 text-start text-sm">{message}</p>
             )}
           />
@@ -126,7 +131,7 @@ const Register = () => {
           <ErrorMessage
             errors={errors}
             name="confirm_password"
-            render={({ message }) => (
+            render={({ message }: any) => (
               <p className="text-red-500 text-start text-sm">{message}</p>
             )}
           />
