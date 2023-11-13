@@ -373,6 +373,8 @@ export default function Navbar() {
                     </SheetHeader>
                   )}
 
+                  <CartDropdown />
+
                   {/* If user is logged (userInfo is true), then show the Account dropdown menu, else, show the auth dropdown menu */}
 
                   <DropdownMenu>
