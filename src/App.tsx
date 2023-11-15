@@ -148,9 +148,12 @@ function App() {
               visit our showroom and see for yourself why we are the best choice
               for your kitchen and bathroom cabinets.
             </p>
-            <button className="p-4 bg-red-600 text-white font-bold rounded-full lg:w-52 z-10 hover:scale-105 duration-200">
+            <Link
+              to={"/torrentekcb/about"}
+              className="p-4 bg-red-600 text-white text-center font-bold rounded-full lg:w-52 z-10 hover:scale-105 duration-200"
+            >
               Our story
-            </button>
+            </Link>
           </div>
         </div>
       </section>
