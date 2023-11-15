@@ -15,7 +15,7 @@ const Pagination = ({ setRegisteredUsers }: any) => {
 
       // Fetchs the users with the skipped users and displays only 5 users
       const response = await fetch(
-        `http://localhost:4000/pagination?skip=${nextPage}&take=5`
+        `https://jesus-torrente-cab-server.onrender.com/pagination?skip=${nextPage}&take=5`
       );
       if (response.ok) {
         // If the response was ok, parse the data
@@ -52,7 +52,7 @@ const Pagination = ({ setRegisteredUsers }: any) => {
       const response = await fetch(
         // Fetches the previous page (pagination?skip={newPage} tells the server to skip the subtracted value )
         // (&take=5) tells the server to take only 5 users
-        `http://localhost:4000/pagination?skip=${newPage}&take=5`
+        `https://jesus-torrente-cab-server.onrender.com/pagination?skip=${newPage}&take=5`
       );
       if (response.ok) {
         // If the response was ok, parse the response and store it in this variable
@@ -79,7 +79,7 @@ const Pagination = ({ setRegisteredUsers }: any) => {
     // Fetches the server and assigns the inputValue (the ID that the user types)
     // into the URL params
     const response = await fetch(
-      `http://localhost:4000/getSpecificId/${inputValue}`
+      `https://jesus-torrente-cab-server.onrender.com/getSpecificId/${inputValue}`
     );
     if (response.ok) {
       // If response ok, parse the response and save it into a variable called data

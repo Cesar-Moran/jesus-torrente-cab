@@ -25,7 +25,9 @@ const AdminHome = () => {
   const getDealerRequests = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch("http://localhost:4000/getDealerRequests");
+      const response = await fetch(
+        "https://jesus-torrente-cab-server.onrender.com/getDealerRequests"
+      );
       if (response.ok) {
         const data = await response.json();
         setRequests(data);
@@ -42,7 +44,7 @@ const AdminHome = () => {
     try {
       setIsLoading(true);
       const response = await fetch(
-        "http://localhost:4000/getRegisteredUsers?take=100000"
+        "https://jesus-torrente-cab-server.onrender.com/getRegisteredUsers?take=100000"
       );
       if (response.ok) {
         const data = await response.json();
@@ -59,7 +61,9 @@ const AdminHome = () => {
   const getAdmins = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch("http://localhost:4000/getAdmins");
+      const response = await fetch(
+        "https://jesus-torrente-cab-server.onrender.com/getAdmins"
+      );
       if (response.ok) {
         const data = await response.json();
         setAdmins(data);

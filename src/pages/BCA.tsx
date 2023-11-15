@@ -67,7 +67,7 @@ const BCA = () => {
     // If token is true (user is logged in) let the user send a dealer request
     if (token) {
       setIsLoading(true);
-      await fetch("http://localhost:4000/dealerForm", {
+      await fetch("https://jesus-torrente-cab-server.onrender.com/dealerForm", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

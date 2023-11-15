@@ -33,7 +33,7 @@ const RegisteredUsers = () => {
   const getRegisteredUsers = async () => {
     try {
       const response = await fetch(
-        "http://localhost:4000/getRegisteredUsers?take=5"
+        "https://jesus-torrente-cab-server.onrender.com/getRegisteredUsers?take=5"
       );
       if (response.ok) {
         const data = await response.json();
@@ -51,7 +51,7 @@ const RegisteredUsers = () => {
   const getRegisteredUsersByRole = async (role: string) => {
     try {
       const response = await fetch(
-        `http://localhost:4000/filterUsersByRole/${role}`
+        `https://jesus-torrente-cab-server.onrender.com/filterUsersByRole/${role}`
       );
       if (response.ok) {
         const data = await response.json();

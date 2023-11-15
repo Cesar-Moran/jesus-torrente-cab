@@ -46,7 +46,7 @@ function App() {
           </div>
         </div>
       </section>
-      <section className="relative py-32 px-3 h-screen flex justify-center items-center">
+      <section className="relative py-32 px-3  flex justify-center items-center ">
         <div className="absolute inset-0  bg-[url('https://images.unsplash.com/photo-1560185127-1902ccdc5094?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-no-repeat"></div>
         <div className="absolute inset-0 bg-black opacity-70"></div>
         <div className="flex flex-col gap-5 text-start lg:text-center">
@@ -125,7 +125,7 @@ function App() {
 
       <LetsTalk />
 
-      <section className="relative  px-6 w-full h-screen flex justify-center items-center ">
+      <section className="relative  px-6 w-full py-32 flex justify-center items-center ">
         <div className="flex flex-col gap-5 lg:flex-row justify-center items-center lg:max-w-7xl mx-auto ">
           <div className="absolute inset-0  bg-[url('https://images.unsplash.com/photo-1560185008-37a6ea85a4d4?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-no-repeat"></div>
           <div className="absolute inset-0 bg-black opacity-70"></div>

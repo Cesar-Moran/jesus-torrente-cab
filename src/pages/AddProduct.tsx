@@ -49,11 +49,13 @@ const AddProduct = () => {
     formData.append("product_quantity", product_quantity);
     product_image && formData.append("product_image", product_image);
 
-    await fetch("http://localhost:4000/createProduct", {
-      method: "POST",
-
-      body: formData,
-    });
+    await fetch(
+      "https://jesus-torrente-cab-server.onrender.com/createProduct",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
   };
 
   return (

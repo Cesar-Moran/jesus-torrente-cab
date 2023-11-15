@@ -85,7 +85,7 @@ const Shop = () => {
 
                 <div className="flex justify-between items-center text-start gap-3">
                   <span className="text-3xl font-bold text-gray-900 dark:text-white">
-                    {product.product_price}
+                    ${product.product_price},00
                   </span>
                   <button
                     className="text-white bg-red-500 hover:bg-red-800
