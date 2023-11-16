@@ -29,7 +29,9 @@ const CartDropdown = () => {
 
           // console.log("Product ID:", productId);
 
-          const response = await fetch(`/api/getCartProducts/${productId.id}`);
+          const response = await fetch(
+            `https://jesus-torrente-cab-server.onrender.com/getCartProducts/${productId.id}`
+          );
 
           if (!response.ok) {
             console.error(

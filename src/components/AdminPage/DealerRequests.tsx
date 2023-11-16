@@ -54,7 +54,7 @@ const DealerRequests = () => {
     );
   };
   const denieRequest = async (requestId: any) => {
-    await fetch("/api/denieRequest", {
+    await fetch("https://jesus-torrente-cab-server.onrender.com/denieRequest", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
