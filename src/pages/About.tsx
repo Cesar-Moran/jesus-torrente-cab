@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 
 const About = () => {
@@ -41,8 +42,8 @@ const About = () => {
                   />
                 </svg>
 
-                <div className="relative z-10">
-                  <span className="uppercase font-serif ">Who are we</span>
+                <div className="relative z-10 max-w-7xl sm:container">
+                  <Badge className="uppercase ">Who are we</Badge>
                   <h2 className="text-7xl font-serif mb-6 text-slate-900">
                     Our Story
                   </h2>

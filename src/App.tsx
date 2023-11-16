@@ -22,7 +22,7 @@ function App() {
           </p>
           <div className="z-10 flex flex-col gap-5 justify-center items-center sm:flex-row">
             <Link to="/torrentekcb/contact">
-              <button className="bg-red-500 p-3 z-10 group text-sm justify-center text-white rounded-2xl font-medium w-52  hover:scale-105 duration-200 flex  gap-2 items-center">
+              <button className="bg-red-500 p-3 z-10 group text-sm justify-center text-white rounded-full font-medium w-52  hover:scale-105 duration-200 flex  gap-2 items-center">
                 Request Consultation
                 <ArrowRightToLine
                   size={16}
@@ -33,7 +33,7 @@ function App() {
               </button>
             </Link>
             <Link to="/torrentekcb/designs">
-              <button className="bg-yellow-400 text-sm p-3 z-10 group rounded-2xl font-medium w-52 hover:scale-105 duration-200 flex items-center gap-2 text-white  justify-center">
+              <button className="bg-yellow-400 text-sm p-3 z-10 group rounded-full font-medium w-52 hover:scale-105 duration-200 flex items-center gap-2 text-white  justify-center">
                 Designs
                 <ArrowRightToLine
                   size={16}
@@ -87,7 +87,10 @@ function App() {
           </p>
           <ul className="grid grid-cols-1 justify-center justify-items-center gap-8 md:grid-cols-2 lg:grid-cols-3 ">
             <li className="flex flex-col justify-center items-center">
-              <img src="https://i0.wp.com/torrentekitchenandbath.com/wp-content/uploads/2023/07/21050-800x800-1.jpg?resize=300%2C300&ssl=1"></img>
+              <img
+                src="https://i0.wp.com/torrentekitchenandbath.com/wp-content/uploads/2023/07/21050-800x800-1.jpg?resize=300%2C300&ssl=1"
+                alt="Sink Image"
+              ></img>
               <h4 className="font-serif text-slate-800 text-2xl self-start">
                 Sinks
               </h4>
@@ -98,7 +101,10 @@ function App() {
               </p>
             </li>
             <li className="flex flex-col justify-center items-center">
-              <img src="https://i0.wp.com/torrentekitchenandbath.com/wp-content/uploads/2023/07/Screenshot-2023-07-28-122517.png?resize=248%2C300&ssl=1"></img>
+              <img
+                src="https://i0.wp.com/torrentekitchenandbath.com/wp-content/uploads/2023/07/Screenshot-2023-07-28-122517.png?resize=248%2C300&ssl=1"
+                alt="Cabinet Image"
+              ></img>
               <h4 className="font-serif text-slate-800 text-2xl self-start">
                 Cabinets
               </h4>
@@ -109,7 +115,10 @@ function App() {
               </p>
             </li>
             <li className="flex flex-col justify-center items-center">
-              <img src="https://i0.wp.com/torrentekitchenandbath.com/wp-content/uploads/2023/07/Screenshot-2023-07-28-123058.png?resize=165%2C300&ssl=1"></img>
+              <img
+                src="https://i0.wp.com/torrentekitchenandbath.com/wp-content/uploads/2023/07/Screenshot-2023-07-28-123058.png?resize=165%2C300&ssl=1"
+                alt="Quartz Image"
+              ></img>
               <h4 className="font-serif text-slate-800 text-2xl self-start">
                 Quartz
               </h4>
@@ -132,6 +141,7 @@ function App() {
           <div className="w-full">
             <img
               src="https://i0.wp.com/torrentekitchenandbath.com/wp-content/uploads/2023/07/20160916_183844.jpg?w=680&ssl=1"
+              alt="Torrente Campus Photo"
               className="relative z-10 rounded-lg"
             ></img>
           </div>
@@ -167,14 +177,17 @@ function App() {
               <img
                 src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&q=80&w=2080&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 className="w-12 h-12 rounded-full relative z-20 border-2 border-white "
+                alt="Avatar from Testimonial"
               ></img>
               <img
                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 className="w-12 h-12 relative -left-4 z-10 bg-transparent rounded-full object-cover border-2 border-white "
+                alt="Avatar from Testimonial"
               ></img>
               <img
                 src="https://torrentekitchenandbath.com/wp-content/uploads/2023/07/Screenshot-2023-07-31-105355-1.png"
                 className="w-12 h-12 relative -left-6 z-5 border-2 border-white "
+                alt="Avatar from Testimonial"
               ></img>
               <div>
                 <span className="text-yellow-400">★ ★ ★ ★ ★</span>
@@ -197,6 +210,7 @@ function App() {
           </p>
           <img
             src="https://i0.wp.com/torrentekitchenandbath.com/wp-content/uploads/2023/07/news-1-2020kcd.jpg?w=370&ssl=1"
+            alt="KCD Software Certified"
             className="z-10 rounded-3xl"
           ></img>
         </div>

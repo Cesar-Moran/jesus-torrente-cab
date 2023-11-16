@@ -126,9 +126,8 @@ const CartDropdown = () => {
             </div>
           </div> */}
 
-          <Button className="fixed top-2">Checkout</Button>
-          <p className="text-lg font-bold">Total:</p>
-          <p className="text-lg font-bold">${calculateTotal()}</p>
+          <Button className="fixed bottom-3">Checkout</Button>
+          <p className="text-lg font-bold">Total: ${calculateTotal()}</p>
         </SheetContent>
         <div className="rounded-full w-5 h-5 bg-red-500 flex justify-center items-center absolute -translate-y-4 right-0 text-white text-xs">
           {products.length}
