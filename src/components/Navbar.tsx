@@ -2,18 +2,12 @@
 
 import { Link } from "react-router-dom";
 import {
-  KeyRound,
-  LockKeyhole,
-  LogOut,
   Menu,
-  User2,
   ShoppingCart,
   Home,
   Component,
   Users,
   Phone,
-  KeySquare,
-  PlusSquare,
 } from "lucide-react";
 
 import {
