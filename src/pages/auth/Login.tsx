@@ -50,7 +50,7 @@ const Login = () => {
 
   const onSubmit = async () => {
     setIsLoading(true);
-    await fetch("https://jesus-torrente-cab-server.onrender.com/login", {
+    await fetch("/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

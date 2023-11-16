@@ -18,9 +18,7 @@ const Shop = () => {
   const getProducts = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(
-        "https://jesus-torrente-cab-server.onrender.com/getProducts"
-      );
+      const response = await fetch("/api/getProducts");
       if (!response.ok) {
         console.error("Failed to fetch product data");
         return;

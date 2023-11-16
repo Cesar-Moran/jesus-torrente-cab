@@ -14,9 +14,7 @@ const Pagination = ({ setRegisteredUsers }: any) => {
       const nextPage = currentPage + 5;
 
       // Fetchs the users with the skipped users and displays only 5 users
-      const response = await fetch(
-        `https://jesus-torrente-cab-server.onrender.com/pagination?skip=${nextPage}&take=5`
-      );
+      const response = await fetch(`/api/pagination?skip=${nextPage}&take=5`);
       if (response.ok) {
         // If the response was ok, parse the data
         const data = await response.json();

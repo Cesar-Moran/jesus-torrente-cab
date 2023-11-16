@@ -47,7 +47,7 @@ const Register = () => {
   };
 
   const onSubmit = async () => {
-    await fetch("https://jesus-torrente-cab-server.onrender.com/register", {
+    await fetch("/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
