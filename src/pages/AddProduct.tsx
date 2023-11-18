@@ -1,6 +1,10 @@
 import GotoHomeBtn from "@/components/AdminPage/GotoHomeBtn";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
+import { Link } from "react-router-dom";
 
 const AddProduct = () => {
   const [product_name, setProduct_name] = useState("");
@@ -9,6 +13,7 @@ const AddProduct = () => {
   const [product_quantity, setProduct_quantity] = useState("");
 
   const [product_image, setProduct_image] = useState<File | null>(null);
+  const { toast } = useToast();
 
   const cardStyles = {
     formcontrol: "border p-3 rounded-lg ",
@@ -55,7 +60,29 @@ const AddProduct = () => {
         method: "POST",
         body: formData,
       }
-    );
+    )
+      .then(() => {
+        toast({
+          variant: "default",
+          title: "The product has been added succesfully.",
+          action: (
+            <ToastAction altText="Goto shop">
+              <Link to={"/torrentekcb/shop"}>Goto shop</Link>
+            </ToastAction>
+          ),
+        });
+      })
+      .catch((err) => {
+        toast({
+          variant: "destructive",
+          title: `There was a problem when adding the product, ${err}`,
+          action: (
+            <ToastAction altText="Goto schedule to undo">
+              Try again.
+            </ToastAction>
+          ),
+        });
+      });
   };
 
   return (
@@ -66,6 +93,8 @@ const AddProduct = () => {
           onSubmit={onSubmit}
         >
           <GotoHomeBtn />
+          <Toaster />
+
           <div className="form-group">
             <input
               type="text"

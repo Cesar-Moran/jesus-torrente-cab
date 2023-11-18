@@ -10,18 +10,20 @@ import {
 import { Button } from "../ui/button";
 
 const CartDropdown = () => {
-  const [products, setProducts] = useState<Array<{ id: any; details: any }>>(
-    []
-  );
+  const [products, setProducts] = useState<
+    Array<{ id: any; details: any; imageUrl: any }>
+  >([]);
 
   const displayCartItems = async () => {
-    // Obtener el contenido actual del localStorage
+    // Get the actual content of localStorage.
     const storedItems = localStorage.getItem("products");
     const existingItems = storedItems ? JSON.parse(storedItems) : [];
 
     const productDetails = await Promise.all(
+      // Maps through existingItems (the localStorage content)
       existingItems.map(async (productId: any) => {
         try {
+          // If there is not a product ID, throws an error.
           if (!productId) {
             console.error("ID del producto no definido:", productId);
             throw new Error("ID del producto no definido");
@@ -29,10 +31,12 @@ const CartDropdown = () => {
 
           // console.log("Product ID:", productId);
 
+          // Makes a request and gets the product with the corresponding ID
           const response = await fetch(
             `https://jesus-torrente-cab-server.onrender.com/getCartProducts/${productId.id}`
           );
 
+          // If response goes bad, throws a new error with the productID.
           if (!response.ok) {
             console.error(
               `Error en la solicitud para el producto ${productId}: ${response.status}`
@@ -42,18 +46,21 @@ const CartDropdown = () => {
             );
           }
 
+          // If response results well, stores the data that the response sent into a variable
+
           const productData = await response.json();
+
           // console.log("Product Data:", productData);
 
-          // Devolver un objeto con los detalles del producto
           return {
             id: productId,
             details: productData.length > 0 ? productData[0] : null,
+            imageUrl: productId.imageUrl,
           };
         } catch (error) {
           console.error(`Error al procesar el producto ${productId}:`, error);
 
-          // Manejar el error y devolver un objeto con el ID del producto
+          // Handle the error and return an object with the product ID
           return {
             id: productId,
             details: null,
@@ -64,9 +71,11 @@ const CartDropdown = () => {
 
     setProducts(productDetails);
 
-    // Hacer algo con los detalles del producto, por ejemplo, mostrarlos en la consola
+    // Do something with the product details, for example, display them on the console.
     // console.log("Detalles del carrito:", productDetails);
   };
+
+  // Calculate the total of all the products that are on the cart (including the quantity of how many products are of the same ID)
 
   const calculateTotal = () => {
     return products
@@ -94,15 +103,15 @@ const CartDropdown = () => {
         >
           <ShoppingCart />
         </SheetTrigger>
-        <SheetContent className="flex flex-col gap-5 overflow-y-auto ">
+        <SheetContent className="flex flex-col  gap-5 overflow-y-auto ">
           {products.map((product, index) => (
             <div key={index}>
               {product.id !== undefined && (
-                <div className="flex items-center gap-3 border-y py-3">
+                <div className="flex items-center  gap-3  py-3">
                   <img
-                    src={product.details?.product_image}
-                    alt=""
-                    className="w-32 h-32 object-center"
+                    src={product.imageUrl}
+                    alt="Product Image"
+                    className="w-52 h-32 object-contain"
                   />
                   <div>
                     <p className="text-xs">{product.id.id}</p>

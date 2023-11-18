@@ -82,6 +82,7 @@ export default function Navbar() {
               <img
                 src="https://i0.wp.com/torrente15.files.wordpress.com/2023/11/adsadsasd.png?ssl=1"
                 alt="torrente logo"
+                className="h-10 lg :h-auto"
               />
               <p className="text-2xl font-extrabold tracking-tight lg:text-4xl xl:5xl animate-in bg-gradient-to-r from-red-500 to-amber-300 bg-clip-text text-transparent"></p>
             </Link>
