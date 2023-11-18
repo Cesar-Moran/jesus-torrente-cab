@@ -114,7 +114,6 @@ const CartDropdown = () => {
                     className="w-52 h-32 object-contain"
                   />
                   <div>
-                    <p className="text-xs">{product.id.id}</p>
                     <p className="text-xs">Quantity: {product.id.quantity}</p>
                     <SheetHeader className="text-xl font-bold">
                       {product.details?.product_name}
