@@ -124,7 +124,7 @@ const Shop = () => {
           >
             <div className="">
               <img
-                className="rounded-t-lg mx-auto  w-full h-[121px]"
+                className="rounded-t-lg mx-auto h-[121px]"
                 src={product.imageUrl}
                 alt="Product image"
               />
